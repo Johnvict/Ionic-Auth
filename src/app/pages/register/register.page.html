@@ -1,0 +1,44 @@
+<ion-content class="ion-padding">
+	<div class="form-centre">
+		<img src="assets/logo.png" alt="" class="logo">
+		<form #RegisterForm="ngForm">
+			<ion-list>
+				<ion-item>
+					<ion-label position="floating">Name</ion-label>
+					<ion-input type="text" [(ngModel)]="newUser.name" required name="name"></ion-input>
+				</ion-item>
+
+				<ion-item>
+					<ion-label position="floating">Email</ion-label>
+					<ion-input type="email" [(ngModel)]="newUser.email" required name="email"></ion-input>
+				</ion-item>
+
+				<ion-item>
+					<ion-label position="floating">Phone Number</ion-label>
+					<ion-input type="text" [(ngModel)]="newUser.phone" required name="phone"></ion-input>
+				</ion-item>
+
+				<ion-item>
+					<ion-label position="floating">Password</ion-label>
+					<ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="newUser.password" required name="password" clearOnEdit="false"></ion-input>
+					<ion-icon [name]="showPassword? 'eye' : 'eye-off'" (click)="showPassword = !showPassword" slot="end"></ion-icon>
+				</ion-item>
+
+			<ion-row style="margin-top:25px">
+				<ion-col size="6">
+					<!-- <ion-button [routerLink]="['/register']" size="large" expand="block" color="primary" fill="outline">Register</ion-button> -->
+				</ion-col>
+				<ion-col size="6">
+					<ion-button size="large" expand="block" color="primary" (click)="register()" [disabled]="!RegisterForm.form.valid">{{ isSessionAdmin ? 'Register Admin' : 'Register'}}</ion-button>
+				</ion-col>
+			</ion-row>
+			<ion-row *ngIf="!isSessionAdmin">
+				<ion-col size="10" offset="4">
+					<a [routerLink]="['/login']" >Already registered? Sign in</a>
+					<!-- <ion-button  size="large" expand="block" color="primary" fill="outline">Register</ion-button> -->
+				</ion-col>
+			</ion-row>
+		  </ion-list>
+		</form>
+	</div>
+</ion-content>
